@@ -20,5 +20,13 @@ tareas.route('/tareas/:id')
 tareas.route('/tareas/:id')
     .put(tareaController.updateTarea)
 
+tareas.route('/tareasusuario/:id')
+    .get(tareaController.tareasUsuario)
+
+tareas.route('/tareasclasificacion/:id')
+    .get(tareaController.tareasClasificacion)
+tareas.route('/tareasusrclas/:id')
+    .get(tareaController.TareasUsuarioClasificacion)
+
 module.exports = tareas;
 
