@@ -23,8 +23,8 @@ let tareaRoute = require('./routes/tarea')
 app.use('/api', tareaRoute)
 // aqui ruta usuarios
 
-// aqui ruta tableros
-
+let tableroRoute = require('./routes/tablero')
+app.use('/api', tableroRoute)
 // aqui ruta bitacora
 
 // aqui ruta clasificacion
