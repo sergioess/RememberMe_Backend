@@ -29,8 +29,8 @@ app.use('/api', tareaRoute)
 
 // aqui ruta clasificacion
 
-// aqui ruta tablero_colaboradores
-
+let tableroColRoute = require('./routes/tableroCol')
+app.use('/api', tableroColRoute)
 // RUTAS
 
 app.listen(3000, function () {
