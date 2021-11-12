@@ -25,7 +25,8 @@ app.use('/api', tareaRoute)
 
 // aqui ruta tableros
 
-// aqui ruta bitacora
+let bitacoraRoute = require('./routes/bitacora')
+app.use('/api', bitacoraRoute)
 
 // aqui ruta clasificacion
 
