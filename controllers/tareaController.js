@@ -1,16 +1,3 @@
-// const { Pool } = require('pg');
-
-// const config = {
-
-//     connectionString: 'postgres://vqnvqguagfltlb:d74da2172d428aed94bc216428afa6bcdee350caf969722a60931c60172b3504@ec2-18-210-95-55.compute-1.amazonaws.com:5432/d2hsqe7t53rfjh',
-//     ssl: {
-//         rejectUnauthorized: false
-//     }
-// };
-// const pool = new Pool(config);
-
-
-
 const pool = require('../database/conn');
 
 
@@ -106,12 +93,12 @@ exports.updateTarea = async function (req, res) {
 };
 
 
-// Raead User Task -> GET
+// Raead Actual User Task -> GET
 exports.tareasUsuario = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
         //const respuesta = await pool.query('SELECT * from tareas as t left join usuarios as u on (t.id_usuario = u.id) WHERE id_usuario = $1 order by fechalimite', [id]);
-        const respuesta = await pool.query('SELECT * from tareas WHERE id_usuario = $1 order by fechalimite', [id]);
+        const respuesta = await pool.query('SELECT * from tareas WHERE id_usuario = $1 and  estado = 1 order by fechalimite ', [id]);
         console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
@@ -125,8 +112,7 @@ exports.tareasUsuario = async function (req, res) {
 exports.tareasClasificacion = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
-        //const respuesta = await pool.query('SELECT * from tareas as t left join usuarios as u on (t.id_usuario = u.id) WHERE id_usuario = $1 order by fechalimite', [id]);
-        const respuesta = await pool.query('SELECT * from tareas WHERE id_clasificacion = $1 order by fechalimite', [id]);
+        const respuesta = await pool.query('SELECT * from tareas WHERE id_clasificacion = $1 and estado = 1 order by fechalimite', [id]);
         console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
