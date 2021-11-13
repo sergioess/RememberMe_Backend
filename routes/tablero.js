@@ -6,6 +6,7 @@ let tableroController = require('../controllers/tableroController')
 let tablero = express.Router();
 
 
+
 tablero.route('/tablero/:id')
     .get(tableroController.readAllTablero)
 
