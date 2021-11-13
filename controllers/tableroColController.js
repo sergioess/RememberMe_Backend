@@ -18,7 +18,7 @@ exports.readAllColTableros = async function (req, res) {
 
     const id = parseInt(req.params.id)
     try {
-        const respuesta = await pool.query('SELECT * from tablero_colaboradores where id_tablero = $1', [id]);
+        const respuesta = await pool.query('SELECT t.*, u.correo from tablero_colaboradores as t left join usuarios as u on (t.id_usuario = u.id_usuario) where id_tablero = $1', [id]);
         console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }

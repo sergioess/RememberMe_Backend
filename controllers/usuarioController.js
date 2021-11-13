@@ -87,3 +87,9 @@ exports.updateUsuario = async function (req, res) {
 
 
 };
+
+
+
+//metodo de login
+//generar el token 
+

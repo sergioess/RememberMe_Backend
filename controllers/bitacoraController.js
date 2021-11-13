@@ -27,9 +27,10 @@ exports.create = async function (req, res) {
     res.json({
         message: 'Registro bitácora agregado',
         body: {
-            tarea: { descripcion, id_tareas, id_usuario}
+            tarea: { descripcion, id_tareas, id_usuario }
         }
     })
 
 
 };
+
