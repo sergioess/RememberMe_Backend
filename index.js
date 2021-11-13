@@ -21,10 +21,10 @@ app.use(router);
 // RUTAS
 let tareaRoute = require('./routes/tarea')
 app.use('/api', tareaRoute)
+let tableroRoute = require('./routes/tablero')
+app.use('/api', tableroRoute)
 let usuarioRoute = require('./routes/usuario')
 app.use('/api', usuarioRoute)
-// aqui ruta tableros
-
 let bitacoraRoute = require('./routes/bitacora')
 app.use('/api', bitacoraRoute)
 
