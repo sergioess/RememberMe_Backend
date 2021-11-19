@@ -27,9 +27,8 @@ let usuarioRoute = require('./routes/usuario')
 app.use('/api', usuarioRoute)
 let bitacoraRoute = require('./routes/bitacora')
 app.use('/api', bitacoraRoute)
-
-// aqui ruta clasificacion
-
+let categoriaRoute = require('./routes/categoria')
+app.use('/api', categoriaRoute)
 let tableroColRoute = require('./routes/tableroCol')
 app.use('/api', tableroColRoute)
 // RUTAS
@@ -38,3 +37,4 @@ app.listen(3000, function () {
     console.log("Node server running on http://localhost:3000");
 });
 
+// Se ejecuta con:   node .   o npm run dev
