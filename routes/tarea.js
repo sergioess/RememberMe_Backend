@@ -25,6 +25,7 @@ tareas.route('/tareasusuario/:id')
 
 tareas.route('/tareasclasificacion/:id')
     .get(tareaController.tareasClasificacion)
+
 tareas.route('/tareasusrclas/:id')
     .get(tareaController.TareasUsuarioClasificacion)
 
