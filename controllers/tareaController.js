@@ -85,7 +85,7 @@ exports.updateTarea = async function (req, res) {
     res.json({
         message: 'Tarea Modificada',
         body: {
-            tarea: { id, titulo, descripcion }
+            tarea: { id, titulo, descripcion, fechalimite, estado, prioridad }
         }
     })
 
