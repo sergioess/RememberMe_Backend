@@ -73,14 +73,14 @@ exports.deleteTarea = async function (req, res) {
 // update one-> PUT
 exports.updateTarea = async function (req, res) {
     const id = parseInt(req.params.id)
-    const { titulo, descripcion } = req.body;
+    const { titulo, descripcion, fechalimite, estado, prioridad } = req.body;
 
     console.log('PUT');
     console.log(req.body.titulo);
 
 
 
-    const response = await pool.query('UPDATE  tareas SET titulo = $1, descripcion = $2 WHERE id = $3 ', [titulo, descripcion, id]);
+    const response = await pool.query('UPDATE  tareas SET titulo = $1, descripcion = $2, fechalimite = $3, estado = $4, prioridad = $5 WHERE id = $6 ', [titulo, descripcion, fechalimite, estado, prioridad, id]);
     console.log(response);
     res.json({
         message: 'Tarea Modificada',
