@@ -38,12 +38,12 @@ exports.create = async function (req, res) {
     let passwordHash = await bcryptjs.hash(password, 10);
     console.log(passwordHash);
 
-    const response = await pool.query('INSERT INTO usuarios (username, password, nombre_completo, correo) VALUES ($1, $2, $3, $4) ', [username, passwordHash, nombre_completo, correo]);
+    const response = await pool.query('INSERT INTO usuarios (username, password, nombre_completo, correo) VALUES ($1, $2, $3, $4) RETURNING * ', [username, passwordHash, nombre_completo, correo]);
 
     res.json({
         message: 'Usuario agregado',
         body: {
-            usuario: { username, passwordHash, nombre_completo, correo }
+            usuario: response.rows[0]
         }
     })
 

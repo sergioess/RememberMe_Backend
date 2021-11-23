@@ -5,7 +5,7 @@ const pool = require('../database/conn');
 exports.readAll = async function (req, res) {
 
     try {
-        const respuesta = await pool.query('SELECT * from tareas');
+        const respuesta = await pool.query('SELECT * from tareas  order by fechalimite ASC');
         //console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
@@ -102,7 +102,7 @@ exports.tareasUsuario = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
         //const respuesta = await pool.query('SELECT * from tareas as t left join usuarios as u on (t.id_usuario = u.id) WHERE id_usuario = $1 order by fechalimite', [id]);
-        const respuesta = await pool.query('SELECT * from tareas WHERE id_usuario = $1 and  estado = 1 order by fechalimite ', [id]);
+        const respuesta = await pool.query('SELECT * from tareas WHERE id_usuario = $1 and  estado = 1 order by fechalimite ASC', [id]);
         console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
@@ -116,7 +116,7 @@ exports.tareasUsuario = async function (req, res) {
 exports.tareasClasificacion = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
-        const respuesta = await pool.query('SELECT * from tareas WHERE id_clasificacion = $1 and estado = 1 order by fechalimite', [id]);
+        const respuesta = await pool.query('SELECT * from tareas WHERE id_clasificacion = $1 and estado = 1 order by fechalimite ASC', [id]);
         console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
@@ -130,7 +130,7 @@ exports.tareasClasificacion = async function (req, res) {
 exports.TareasUsuarioClasificacion = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
-        const respuesta = await pool.query('SELECT * from tareas WHERE id_usuario = $1 order by id_clasificacion', [id]);
+        const respuesta = await pool.query('SELECT * from tareas WHERE id_usuario = $1 order by id_clasificacion, fechalimite ASC ', [id]);
         console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }

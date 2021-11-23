@@ -36,12 +36,12 @@ exports.create = async function (req, res) {
     console.log(req.body.titulo);
 
 
-    const response = await pool.query('INSERT INTO tablero_colaboradores (id_tablero, id_colaborador)  VALUES ($1, $2) ', [id_tablero, id_colaborador]);
+    const response = await pool.query('INSERT INTO tablero_colaboradores (id_tablero, id_colaborador)  VALUES ($1, $2) RETURNING *  ', [id_tablero, id_colaborador]);
     // console.log(response);
     res.json({
         message: 'Tablero Agregado',
         body: {
-            tarea: { id_tablero, id_colaborador }
+            tablerocolaborador: response.rows[0]
         }
     })
 

@@ -40,12 +40,12 @@ exports.create = async function (req, res) {
     console.log(req.body.titulo);
 
     try {
-        const response = await pool.query('INSERT INTO clasificacion (id_usuario, color, descripcion)  VALUES ($1, $2, $3 ) ', [id_usuario, color, descripcion]);
+        const response = await pool.query('INSERT INTO clasificacion (id_usuario, color, descripcion)  VALUES ($1, $2, $3 ) RETURNING *  ', [id_usuario, color, descripcion]);
         // console.log(response);
         res.json({
             message: 'Categoria Agregada',
             body: {
-                tarea: { id_usuario, color, descripcion }
+                categoria: response.rows[0]
             }
         })
     } catch (error) {

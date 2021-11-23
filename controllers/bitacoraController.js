@@ -22,12 +22,12 @@ exports.create = async function (req, res) {
     console.log('POST');
     console.log(req.body.descripcion);
 
-    const response = await pool.query('INSERT INTO bitacora (descripcion, id_tareas, id_usuario ) VALUES ($1, $2, $3) ', [descripcion, id_tareas, id_usuario]);
+    const response = await pool.query('INSERT INTO bitacora (descripcion, id_tareas, id_usuario ) VALUES ($1, $2, $3) RETURNING * ', [descripcion, id_tareas, id_usuario]);
     // console.log(response);
     res.json({
         message: 'Registro bitácora agregado',
         body: {
-            tarea: { descripcion, id_tareas, id_usuario }
+            bicacora: response.rows[0]
         }
     })
 

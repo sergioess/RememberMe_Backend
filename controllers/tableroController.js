@@ -2,7 +2,7 @@ const pool = require('../database/conn');
 // read -> GET
 exports.readAllTablero = async function (req, res) {
 
-   
+
     const id = parseInt(req.params.id)
     try {
         const respuesta = await pool.query('SELECT * from tablero where id = $1', [id]);
@@ -17,18 +17,18 @@ exports.readAllTablero = async function (req, res) {
 // create one-> POST
 exports.create = async function (req, res) {
 
-    const {  id_usuario, titulo, descripcion } = req.body;
+    const { id_usuario, titulo, descripcion } = req.body;
 
     console.log('POST');
     console.log(req.body.titulo);
 
 
-    const response = await pool.query('INSERT INTO tablero (id_usuario, titulo, descripcion)  VALUES ($1, $2, $3 ) ', [ id_usuario, titulo, descripcion]);
+    const response = await pool.query('INSERT INTO tablero (id_usuario, titulo, descripcion)  VALUES ($1, $2, $3 ) RETURNING *  ', [id_usuario, titulo, descripcion]);
     // console.log(response);
     res.json({
         message: 'Tablero Agregado',
         body: {
-            tarea: { id_usuario, titulo, descripcion}
+            tablero: response.rows[0]
         }
     })
 
