@@ -40,7 +40,7 @@ exports.create = async function (req, res) {
     const date = new Date();
     console.log(date);
 
-    const response = await pool.query('INSERT INTO tareas (titulo, descripcion, id_usuario, fechalimite) VALUES ($1, $2, $3, $4, %4) ', [titulo, descripcion, id_usuario, date]);
+    const response = await pool.query('INSERT INTO tareas (titulo, descripcion, id_usuario, fechalimite) VALUES ($1, $2, $3, $4) ', [titulo, descripcion, id_usuario, date]);
     // console.log(response);
     res.json({
         message: 'Tarea Agregada',
