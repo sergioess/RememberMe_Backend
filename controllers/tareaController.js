@@ -40,14 +40,17 @@ exports.create = async function (req, res) {
     const date = new Date();
     console.log(date);
 
-    const response = await pool.query('INSERT INTO tareas (titulo, descripcion, id_usuario, fechalimite) VALUES ($1, $2, $3, $4) ', [titulo, descripcion, id_usuario, date]);
+    const response = await pool.query('INSERT INTO tareas (titulo, descripcion, id_usuario, fechalimite) VALUES ($1, $2, $3, $4) RETURNING * ', [titulo, descripcion, id_usuario, date]);
     // console.log(response);
+
     res.json({
         message: 'Tarea Agregada',
         body: {
-            tarea: { id, titulo, descripcion, id_usuario, date }
+            tarea: response.rows[0]
         }
     })
+
+    // console.log("ID ingresado" + res.rows[0].id);
 
 
 };
@@ -82,6 +85,7 @@ exports.updateTarea = async function (req, res) {
 
     const response = await pool.query('UPDATE  tareas SET titulo = $1, descripcion = $2, fechalimite = $3, estado = $4, prioridad = $5 WHERE id = $6 ', [titulo, descripcion, fechalimite, estado, prioridad, id]);
     console.log(response);
+
     res.json({
         message: 'Tarea Modificada',
         body: {
