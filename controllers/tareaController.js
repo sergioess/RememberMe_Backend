@@ -45,7 +45,7 @@ exports.create = async function (req, res) {
     res.json({
         message: 'Tarea Agregada',
         body: {
-            tarea: { titulo, descripcion, id_usuario, date }
+            tarea: { id, titulo, descripcion, id_usuario, date }
         }
     })
 
