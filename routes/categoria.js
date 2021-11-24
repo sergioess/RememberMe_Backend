@@ -9,6 +9,8 @@ categoria.route('/categoria').get(categoriaController.readAll)
 
 categoria.route('/categoria/:id').get(categoriaController.readById)
 
+categoria.route('/categoriausr/:id').get(categoriaController.readAllByIdusr)
+
 categoria.route('/categoria').post(categoriaController.create)
 
 categoria.route('/categoria/:id').post(categoriaController.readById)

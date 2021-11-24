@@ -14,6 +14,20 @@ exports.readAll = async function (req, res) {
     }
 };
 
+// read All one user-> GET
+readAllByIdusr = async function (req, res) {
+    const id = parseInt(req.params.id)
+    //res.send(req.params.se)
+    try {
+        const respuesta = await pool.query('SELECT * from categorias WHERE id_usuario = $1', [id]);
+        console.log(respuesta.rows);
+        res.status(200).json(respuesta.rows);
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
 
 // read one-> GET
 exports.readById = async function (req, res) {
