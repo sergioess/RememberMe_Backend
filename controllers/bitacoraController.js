@@ -4,7 +4,7 @@ const pool = require('../database/conn');
 exports.readAll = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
-        const respuesta = await pool.query('SELECT * from bitacora WHERE id_usuario = $1 order by create_at desc', [id]);
+        const respuesta = await pool.query('SELECT b.id as bid, b.descripcion as bdes, b.create_at as bcrea, t.titulo, t.estado from bitacora as b LEFT JOIN tareas as t on (b.id_tareas = t.id) WHERE b.id_usuario = $1 order by b.create_at desc', [id]);
         console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
