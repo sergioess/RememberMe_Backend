@@ -15,7 +15,7 @@ exports.readAll = async function (req, res) {
 };
 
 // read All one user-> GET
-readAllByIdusr = async function (req, res) {
+exports.readAllByIdusr = async function (req, res) {
     const id = parseInt(req.params.id)
     //res.send(req.params.se)
     try {
