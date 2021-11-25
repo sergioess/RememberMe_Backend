@@ -5,7 +5,7 @@ const pool = require('../database/conn');
 exports.readAll = async function (req, res) {
 
     try {
-        const respuesta = await pool.query('SELECT * from categorias');
+        const respuesta = await pool.query('SELECT * from categorias order by id');
         // console.log(respuesta);
         res.status(200).json(respuesta.rows);
     }
@@ -19,7 +19,7 @@ exports.readAllByIdusr = async function (req, res) {
     const id = parseInt(req.params.id)
     //res.send(req.params.se)
     try {
-        const respuesta = await pool.query('SELECT * from categorias WHERE id_usuario = $1', [id]);
+        const respuesta = await pool.query('SELECT * from categorias WHERE id_usuario = $1 order by id', [id]);
         console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
@@ -34,7 +34,7 @@ exports.readById = async function (req, res) {
     const id = parseInt(req.params.id)
     //res.send(req.params.se)
     try {
-        const respuesta = await pool.query('SELECT * from categorias WHERE id = $1', [id]);
+        const respuesta = await pool.query('SELECT * from categorias WHERE id = $1 order by id', [id]);
         console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
@@ -103,12 +103,12 @@ exports.updateCategoria = async function (req, res) {
     console.log('PUT');
     console.log(req.body.titulo);
 
-    const response = await pool.query('UPDATE categorias SET  descripcion = $1 WHERE id = $2 ', [descripcion, id]);
+    const response = await pool.query('UPDATE categorias SET  descripcion = $1 WHERE id = $2  RETURNING * ', [descripcion, id]);
     console.log(response);
     res.json({
         message: 'Categoria Modificada',
         body: {
-            tarea: { id, descripcion }
+            categoria: response.rows[0]
         }
     })
 
