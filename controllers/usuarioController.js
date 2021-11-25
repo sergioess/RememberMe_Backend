@@ -30,6 +30,31 @@ exports.readById = async function (req, res) {
     }
 
 }
+
+
+// read one by Email-> GET
+exports.readByEmail = async function (req, res) {
+    const correo = req.params.email;
+
+    try {
+        const respuesta = await pool.query('SELECT * from usuarios WHERE correo = $1', [correo]);
+        console.log(respuesta.rows);
+
+        let usuarioIntentaLoguear = respuesta.rows;
+        console.log(usuarioIntentaLoguear);
+        // Loguear usuario
+        const password = req.params.password;
+
+
+        res.status(200).json(respuesta.rows);
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
+
+
 // create one-> POST
 exports.create = async function (req, res) {
 
