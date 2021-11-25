@@ -98,17 +98,17 @@ exports.deleteCategoria = async function (req, res) {
 // update one-> PUT
 exports.updateCategoria = async function (req, res) {
     const id = parseInt(req.params.id)
-    const { titulo, descripcion, color } = req.body;
+    const { descripcion, color } = req.body;
 
     console.log('PUT');
     console.log(req.body.titulo);
 
-    const response = await pool.query('UPDATE categorias SET titulo = $1, descripcion = $2, color = $3 WHERE id = $4 ', [titulo, descripcion, color, id]);
+    const response = await pool.query('UPDATE categorias SET  descripcion = $1 WHERE id = $2 ', [descripcion, id]);
     console.log(response);
     res.json({
-        message: 'Tarea Modificada',
+        message: 'Categoria Modificada',
         body: {
-            tarea: { id, titulo, descripcion, color }
+            tarea: { id, descripcion }
         }
     })
 
