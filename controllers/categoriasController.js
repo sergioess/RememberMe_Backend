@@ -66,10 +66,7 @@ exports.create = async function (req, res) {
         console.log(error.detail);
     }
 
-
-
 };
-
 
 
 // delete one-> DELETE
@@ -88,11 +85,15 @@ exports.deleteCategoria = async function (req, res) {
     }
     catch (err) {
         console.log(err);
+        res.json({
+            message: 'Error ',
+            body: {
+                error: err
+            }
+        })
     }
 
 }
-
-
 
 
 // update one-> PUT
