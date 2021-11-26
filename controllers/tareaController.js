@@ -83,7 +83,7 @@ exports.updateTarea = async function (req, res) {
 
 
 
-    const response = await pool.query('UPDATE  tareas SET titulo = $1, descripcion = $2, fechalimite = $3, estado = $4, prioridad = $5, id_clasificacion = &6 WHERE id = $7  RETURNING * ', [titulo, descripcion, fechalimite, estado, prioridad, id_clasificacion, id]);
+    const response = await pool.query('UPDATE  tareas SET titulo = $1, descripcion = $2, fechalimite = $3, estado = $4, prioridad = $5, id_clasificacion = $6 WHERE id = $7  RETURNING * ', [titulo, descripcion, fechalimite, estado, prioridad, id_clasificacion, id]);
     console.log(response);
 
     res.json({
