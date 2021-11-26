@@ -40,10 +40,10 @@ exports.readByEmailUser = async function (req, res) {
         const respuesta = await pool.query('SELECT * from usuarios WHERE correo = $1', [correo]);
         console.log(respuesta.rows);
 
-        let usuarioIntentaLoguear = respuesta.rows;
+        let usuarioIntentaLoguear = respuesta.rows[0];
         console.log(usuarioIntentaLoguear);
 
-        res.status(200).json(respuesta.rows);
+        res.status(200).json(respuesta.rows[0]);
     }
     catch (err) {
         console.log(err);
