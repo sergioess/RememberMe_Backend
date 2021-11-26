@@ -30,6 +30,31 @@ exports.readById = async function (req, res) {
     }
 
 }
+
+
+// read one by Email-> GET
+exports.readByEmail = async function (req, res) {
+    const correo = req.params.email;
+
+    try {
+        const respuesta = await pool.query('SELECT * from usuarios WHERE correo = $1', [correo]);
+        console.log(respuesta.rows);
+
+        let usuarioIntentaLoguear = respuesta.rows;
+        console.log(usuarioIntentaLoguear);
+        // Loguear usuario
+        const password = req.params.password;
+
+
+        res.status(200).json(respuesta.rows);
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
+
+
 // create one-> POST
 exports.create = async function (req, res) {
 
@@ -38,12 +63,12 @@ exports.create = async function (req, res) {
     let passwordHash = await bcryptjs.hash(password, 10);
     console.log(passwordHash);
 
-    const response = await pool.query('INSERT INTO usuarios (username, password, nombre_completo, correo) VALUES ($1, $2, $3, $4) ', [username, passwordHash, nombre_completo, correo]);
+    const response = await pool.query('INSERT INTO usuarios (username, password, nombre_completo, correo) VALUES ($1, $2, $3, $4) RETURNING * ', [username, passwordHash, nombre_completo, correo]);
 
     res.json({
         message: 'Usuario agregado',
         body: {
-            usuario: { username, passwordHash, nombre_completo, correo }
+            usuario: response.rows[0]
         }
     })
 

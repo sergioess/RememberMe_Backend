@@ -5,7 +5,7 @@ const pool = require('../database/conn');
 exports.readAll = async function (req, res) {
 
     try {
-        const respuesta = await pool.query('SELECT * from clasificacion');
+        const respuesta = await pool.query('SELECT * from categorias order by id');
         // console.log(respuesta);
         res.status(200).json(respuesta.rows);
     }
@@ -14,13 +14,27 @@ exports.readAll = async function (req, res) {
     }
 };
 
+// read All one user-> GET
+exports.readAllByIdusr = async function (req, res) {
+    const id = parseInt(req.params.id)
+    //res.send(req.params.se)
+    try {
+        const respuesta = await pool.query('SELECT * from categorias WHERE id_usuario = $1 order by id', [id]);
+        console.log(respuesta.rows);
+        res.status(200).json(respuesta.rows);
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
 
 // read one-> GET
 exports.readById = async function (req, res) {
     const id = parseInt(req.params.id)
     //res.send(req.params.se)
     try {
-        const respuesta = await pool.query('SELECT * from clasificacion WHERE id = $1', [id]);
+        const respuesta = await pool.query('SELECT * from categorias WHERE id = $1 order by id', [id]);
         console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
@@ -40,22 +54,19 @@ exports.create = async function (req, res) {
     console.log(req.body.titulo);
 
     try {
-        const response = await pool.query('INSERT INTO clasificacion (id_usuario, color, descripcion)  VALUES ($1, $2, $3 ) ', [id_usuario, color, descripcion]);
+        const response = await pool.query('INSERT INTO categorias (id_usuario, color, descripcion)  VALUES ($1, $2, $3 ) RETURNING *  ', [id_usuario, color, descripcion]);
         // console.log(response);
         res.json({
             message: 'Categoria Agregada',
             body: {
-                tarea: { id_usuario, color, descripcion }
+                categoria: response.rows[0]
             }
         })
     } catch (error) {
         console.log(error.detail);
     }
 
-
-
 };
-
 
 
 // delete one-> DELETE
@@ -63,7 +74,7 @@ exports.deleteCategoria = async function (req, res) {
     console.log('DELETE');
     const id = parseInt(req.params.id)
     try {
-        const respuesta = await pool.query('DELETE from clasificacion WHERE id = $1', [id]);
+        const respuesta = await pool.query('DELETE from categorias WHERE id = $1', [id]);
         console.log(respuesta);
         res.json({
             message: 'Clasificación Eliminado',
@@ -74,27 +85,31 @@ exports.deleteCategoria = async function (req, res) {
     }
     catch (err) {
         console.log(err);
+        res.json({
+            message: 'Error ',
+            body: {
+                error: err
+            }
+        })
     }
 
 }
 
 
-
-
 // update one-> PUT
 exports.updateCategoria = async function (req, res) {
     const id = parseInt(req.params.id)
-    const { titulo, descripcion, color } = req.body;
+    const { descripcion, color } = req.body;
 
     console.log('PUT');
     console.log(req.body.titulo);
 
-    const response = await pool.query('UPDATE clasificacion SET titulo = $1, descripcion = $2, color = $3 WHERE id = $4 ', [titulo, descripcion, color, id]);
+    const response = await pool.query('UPDATE categorias SET  descripcion = $1 WHERE id = $2  RETURNING * ', [descripcion, id]);
     console.log(response);
     res.json({
-        message: 'Tarea Modificada',
+        message: 'Categoria Modificada',
         body: {
-            tarea: { id, titulo, descripcion, color }
+            categoria: response.rows[0]
         }
     })
 
