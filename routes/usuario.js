@@ -23,6 +23,9 @@ usuarios.route('/usuarios/:id')
 usuarios.route('/usuariosemail/')
     .post(usuarioController.readByEmail)
 
+usuarios.route('/usuariosemail/:email')
+    .get(usuarioController.readByEmailUser)
+
 
 /* usuarios.route('/tareasusuario/:id')
     .get(tareaController.tareasUsuario)
