@@ -33,20 +33,80 @@ exports.readById = async function (req, res) {
 
 
 // read one by Email-> GET
+// exports.readByEmail = async function (req, res) {
+//     const correo = req.params.email;
+
+//     try {
+//         const respuesta = await pool.query('SELECT * from usuarios WHERE correo = $1', [correo]);
+//         console.log(respuesta.rows);
+
+//         let usuarioIntentaLoguear = respuesta.rows;
+//         console.log(usuarioIntentaLoguear);
+//         // Loguear usuario
+//         const password = req.params.password;
+
+//         bcryptjs.compare(password, hashedPassword,
+//             async function (err, isMatch) {
+
+//                 // Comparing the original password to
+//                 // encrypted password   
+//                 if (isMatch) {
+//                     console.log('Encrypted password is: ', password);
+//                     console.log('Decrypted password is: ', hashedPassword);
+//                 }
+
+//                 if (!isMatch) {
+
+//                     // If password doesn't match the following
+//                     // message will be sent
+//                     console.log(hashedPassword + ' is not encryption of '
+//                         + password);
+//                 }
+//             })
+
+//         res.status(200).json(respuesta.rows);
+//     }
+//     catch (err) {
+//         console.log(err);
+//     }
+
+// }
+
+
+
+// read one by Email-> GET
 exports.readByEmail = async function (req, res) {
-    const correo = req.params.email;
+    const { correo, password } = req.body;
 
     try {
         const respuesta = await pool.query('SELECT * from usuarios WHERE correo = $1', [correo]);
-        console.log(respuesta.rows);
+        // console.log(respuesta.rows);
 
-        let usuarioIntentaLoguear = respuesta.rows;
-        console.log(usuarioIntentaLoguear);
+        let usuarioIntentaLoguear = respuesta.rows[0];
+        // console.log(usuarioIntentaLoguear.password);
         // Loguear usuario
-        const password = req.params.password;
+
+        bcryptjs.compare(password, usuarioIntentaLoguear.password,
+            async function (err, isMatch) {
+
+                // Comparing the original password to
+                // encrypted password   
+                if (isMatch) {
+                    // console.log('Encrypted password is: ', password);
+                    // console.log('Decrypted password is: ', usuarioIntentaLoguear.password);
+                    res.status(200).json("true");
+                }
+
+                if (!isMatch) {
+
+                    // If password doesn't match the following
+                    // message will be sent
+                    // console.log(usuarioIntentaLoguear.password + ' is not encryption of ' + password);
+                    res.status(200).json("false");
+                }
+            });
 
 
-        res.status(200).json(respuesta.rows);
     }
     catch (err) {
         console.log(err);
@@ -112,6 +172,8 @@ exports.updateUsuario = async function (req, res) {
 
 
 };
+
+
 
 
 
