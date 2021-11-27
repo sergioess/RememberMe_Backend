@@ -23,7 +23,7 @@ exports.readById = async function (req, res) {
     try {
         const respuesta = await pool.query('SELECT * from usuarios WHERE id = $1', [id]);
         console.log(respuesta.rows);
-        res.status(200).json(respuesta.rows);
+        res.status(200).json(respuesta.rows[0]);
     }
     catch (err) {
         console.log(err);
