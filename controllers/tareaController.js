@@ -20,7 +20,7 @@ exports.readById = async function (req, res) {
     const id = parseInt(req.params.id)
     //res.send(req.params.se)
     try {
-        const respuesta = await pool.query('SELECT * from tareas WHERE id = $1', [id]);
+        const respuesta = await pool.query('SELECT * from tareas WHERE id = $1 ', [id]);
         console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
@@ -34,11 +34,11 @@ exports.create = async function (req, res) {
 
     const { titulo, descripcion, id_usuario } = req.body;
 
-    console.log('POST');
-    console.log(req.body.titulo);
+    // console.log('POST');
+    // console.log(req.body.titulo);
 
     const date = new Date();
-    console.log(date);
+    // console.log(date);
 
     const response = await pool.query('INSERT INTO tareas (titulo, descripcion, id_usuario, fechalimite) VALUES ($1, $2, $3, $4) RETURNING * ', [titulo, descripcion, id_usuario, date]);
     // console.log(response);
@@ -60,7 +60,7 @@ exports.deleteTarea = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
         const respuesta = await pool.query('DELETE from tareas WHERE id = $1', [id]);
-        console.log(respuesta.rows);
+        // console.log(respuesta.rows);
         res.json({
             message: 'Tarea Eliminada',
             body: {
@@ -78,8 +78,8 @@ exports.updateTarea = async function (req, res) {
     const id = parseInt(req.params.id)
     const { titulo, descripcion, fechalimite, estado, prioridad, id_clasificacion } = req.body;
 
-    console.log('PUT');
-    console.log(req.body.titulo);
+    // console.log('PUT');
+    // console.log(req.body.titulo);
 
 
 
@@ -102,8 +102,8 @@ exports.tareasUsuario = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
         //const respuesta = await pool.query('SELECT * from tareas as t left join usuarios as u on (t.id_usuario = u.id) WHERE id_usuario = $1 order by fechalimite', [id]);
-        const respuesta = await pool.query('SELECT * from tareas WHERE id_usuario = $1 and  estado = 1 order by fechalimite ASC', [id]);
-        console.log(respuesta.rows);
+        const respuesta = await pool.query('SELECT * from tareas WHERE id_usuario = $1 and  estado <> 3 order by fechalimite ASC', [id]);
+        // console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
     catch (err) {
@@ -114,10 +114,11 @@ exports.tareasUsuario = async function (req, res) {
 
 // Raead Task for One Clasification-> GET
 exports.tareasClasificacion = async function (req, res) {
-    const id = parseInt(req.params.id)
+    const { id_usuario, id_clasificacion } = req.body;
+
     try {
-        const respuesta = await pool.query('SELECT * from tareas WHERE id_clasificacion = $1 and estado = 1 order by fechalimite ASC', [id]);
-        console.log(respuesta.rows);
+        const respuesta = await pool.query('SELECT * from tareas WHERE id_clasificacion = $1 and id_usuario = $2 and estado <> 3 order by fechalimite ASC', [id_clasificacion, id_usuario]);
+        // console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
     catch (err) {
@@ -131,7 +132,7 @@ exports.TareasUsuarioClasificacion = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
         const respuesta = await pool.query('SELECT * from tareas WHERE id_usuario = $1 order by id_clasificacion, fechalimite ASC ', [id]);
-        console.log(respuesta.rows);
+        // console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
     catch (err) {
