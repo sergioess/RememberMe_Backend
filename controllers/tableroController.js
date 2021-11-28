@@ -14,6 +14,23 @@ exports.readAllTablero = async function (req, res) {
     }
 };
 
+
+
+// read All tableros Usuario-> GET
+exports.readAllTableroUsr = async function (req, res) {
+
+
+    const id = parseInt(req.params.id_usuario)
+    try {
+        const respuesta = await pool.query('SELECT * from tablero where id_usuario = $1 order by created_at', [id]);
+        // console.log(respuesta.rows);
+        res.status(200).json(respuesta.rows);
+    }
+    catch (err) {
+        console.log(err);
+    }
+};
+
 // create one-> POST
 exports.create = async function (req, res) {
 

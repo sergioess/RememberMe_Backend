@@ -10,6 +10,9 @@ let tablero = express.Router();
 tablero.route('/tablero/:id')
     .get(tableroController.readAllTablero)
 
+tablero.route('/tablerousr/:id_usuario')
+    .get(tableroController.readAllTableroUsr)
+
 tablero.route('/tablero')
     .post(tableroController.create)
 
