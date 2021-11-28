@@ -29,6 +29,9 @@ exports.readById = async function (req, res) {
     }
 
 }
+
+
+
 // create one-> POST
 exports.create = async function (req, res) {
 
@@ -118,6 +121,22 @@ exports.tareasClasificacion = async function (req, res) {
 
     try {
         const respuesta = await pool.query('SELECT * from tareas WHERE id_clasificacion = $1 and id_usuario = $2 and estado <> 3 order by fechalimite ASC', [id_clasificacion, id_usuario]);
+        // console.log(respuesta.rows);
+        res.status(200).json(respuesta.rows);
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
+
+
+// Raead Task for One Tablero-> GET
+exports.TareasTablero = async function (req, res) {
+    const id = parseInt(req.params.id_tablero)
+
+    try {
+        const respuesta = await pool.query('SELECT * from tareas WHERE id_tablero = $1 and estado <> 3 order by fechalimite ASC', [id]);
         // console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }

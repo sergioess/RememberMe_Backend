@@ -29,5 +29,8 @@ tareas.route('/tareasclasificacion')
 tareas.route('/tareasusrclas/:id')
     .get(tareaController.TareasUsuarioClasificacion)
 
+tareas.route('/tareastablero/:id_tablero')
+    .get(tareaController.TareasTablero)
+
 module.exports = tareas;
 
