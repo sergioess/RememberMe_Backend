@@ -20,5 +20,8 @@ tablero.route('/tablero/:id')
     .delete(tableroController.deleteTablero)
 
 
+tablero.route('/tablerocolabora/:id')
+    .get(tableroController.tableroColaboradores)
+
 module.exports = tablero;
 
