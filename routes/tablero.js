@@ -26,5 +26,8 @@ tablero.route('/tablerocolabora/:id')
 tablero.route('/removecolabora/:id')
     .delete(tableroController.removeColaborador)
 
+tablero.route('/updaterolcol/:id')
+    .put(tableroController.udpdaterolcol)
+
 module.exports = tablero;
 

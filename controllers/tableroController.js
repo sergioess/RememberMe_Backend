@@ -106,3 +106,23 @@ exports.removeColaborador = async function (req, res) {
     }
 
 }
+
+
+
+// update rol del colaborador-> PUT
+exports.udpdaterolcol = async function (req, res) {
+    const id = parseInt(req.params.id)
+    const { rol } = req.body;
+
+    const response = await pool.query('UPDATE tablero_colaboradores set rol = $1 WHERE id = $2  RETURNING * ', [rol, id]);
+    console.log(response);
+
+    res.json({
+        message: 'Colaborador Modificado',
+        body: {
+            tarea: response.rows[0]
+        }
+    })
+
+
+};
