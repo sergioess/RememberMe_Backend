@@ -84,3 +84,25 @@ exports.tableroColaboradores = async function (req, res) {
         console.log(err);
     }
 };
+
+
+
+// remove one colaborador de un tablero-> DELETE
+exports.removeColaborador = async function (req, res) {
+    console.log('DELETE');
+    const id = parseInt(req.params.id);
+    try {
+        const respuesta = await pool.query('DELETE from tablero_colaboradores WHERE id = $1', [id]);
+        console.log(respuesta.rows);
+        res.json({
+            message: 'Colaborador Eliminado',
+            body: {
+                tablero: { id }
+            }
+        })
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
