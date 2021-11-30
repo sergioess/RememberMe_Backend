@@ -31,6 +31,8 @@ let categoriaRoute = require('./routes/categoria')
 app.use('/api', categoriaRoute)
 let tableroColRoute = require('./routes/tableroCol')
 app.use('/api', tableroColRoute)
+let notificationColRoute = require('./routes/notification')
+app.use('/api', notificationColRoute)
 // RUTAS
 
 // app.listen(3000, function () {
