@@ -33,13 +33,13 @@ exports.create = async function (req, res) {
     const { id_tablero, id_colaborador } = req.body;
 
     console.log('POST');
-    console.log(req.body.titulo);
+    // console.log(req.body.titulo);
 
 
     const response = await pool.query('INSERT INTO tablero_colaboradores (id_tablero, id_colaborador)  VALUES ($1, $2) RETURNING *  ', [id_tablero, id_colaborador]);
     // console.log(response);
     res.json({
-        message: 'Tablero Agregado',
+        message: 'Colaborador Agregado',
         body: {
             tablerocolaborador: response.rows[0]
         }
