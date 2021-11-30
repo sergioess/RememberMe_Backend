@@ -22,8 +22,8 @@ exports.countUnreadByUsr = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
         const respuesta = await pool.query('select count(id) from notification n where n.id_usr_recieve  = $1 and n.read = false', [id]);
-        console.log(respuesta.rows);
-        res.status(200).json(respuesta.rows);
+        console.log(respuesta);
+        res.status(200).json(respuesta.rows[0].count);
     }
     catch (err) {
         console.log(err);
