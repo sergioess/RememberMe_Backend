@@ -5,7 +5,9 @@ let notificationController = require('../controllers/notificationController')
 
 let notificacion = express.Router();
 
-notificacion.route('/notificacion/:id').post(notificationController.readByIdUsr)
+notificacion.route('/notificacion/:id').get(notificationController.readByIdUsr)
+
+notificacion.route('/notificacioncount/:id').get(notificationController.countUnreadByUsr)
 
 notificacion.route('/notificacion/:id').put(notificationController.updateNotifRead)
 
