@@ -20,8 +20,11 @@ usuarios.route('/usuarios/:id')
 usuarios.route('/usuarios/:id')
     .put(usuarioController.updateUsuario)
 
+usuarios.route('/usuariosemail/')
+    .post(usuarioController.readByEmail)
+
 usuarios.route('/usuariosemail/:email')
-    .get(usuarioController.readByEmail)
+    .get(usuarioController.readByEmailUser)
 
 
 /* usuarios.route('/tareasusuario/:id')

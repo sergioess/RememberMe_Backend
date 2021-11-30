@@ -23,11 +23,14 @@ tareas.route('/tareas/:id')
 tareas.route('/tareasusuario/:id')
     .get(tareaController.tareasUsuario)
 
-tareas.route('/tareasclasificacion/:id')
-    .get(tareaController.tareasClasificacion)
+tareas.route('/tareasclasificacion')
+    .post(tareaController.tareasClasificacion)
 
 tareas.route('/tareasusrclas/:id')
     .get(tareaController.TareasUsuarioClasificacion)
+
+tareas.route('/tareastablero/:id_tablero')
+    .get(tareaController.TareasTablero)
 
 module.exports = tareas;
 

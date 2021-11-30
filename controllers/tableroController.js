@@ -14,6 +14,21 @@ exports.readAllTablero = async function (req, res) {
     }
 };
 
+
+
+// read All tableros Usuario-> GET
+exports.readAllTableroUsr = async function (req, res) {
+    const id = parseInt(req.params.id_usuario)
+    try {
+        const respuesta = await pool.query('SELECT * from tablero where id_usuario = $1 order by created_at', [id]);
+        // console.log(respuesta.rows);
+        res.status(200).json(respuesta.rows);
+    }
+    catch (err) {
+        console.log(err);
+    }
+};
+
 // create one-> POST
 exports.create = async function (req, res) {
 
@@ -43,6 +58,44 @@ exports.deleteTablero = async function (req, res) {
         console.log(respuesta.rows);
         res.json({
             message: 'tablero Eliminado',
+            body: {
+                tablero: { id }
+            }
+        })
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
+
+
+
+
+// read All Colaboradores del Tablero -> GET
+exports.tableroColaboradores = async function (req, res) {
+    const id = parseInt(req.params.id)
+    try {
+        const respuesta = await pool.query('SELECT tb.id as id, tb.id_tablero as tid,tb.id_colaborador as cid, tb.rol as crol, tb.acepto , us.username from tablero_colaboradores as tb left join usuarios as us on (tb.id_colaborador = us.id) where tb.id_tablero = $1 order by tb.id', [id]);
+        // console.log(respuesta.rows);
+        res.status(200).json(respuesta.rows);
+    }
+    catch (err) {
+        console.log(err);
+    }
+};
+
+
+
+// remove one colaborador de un tablero-> DELETE
+exports.removeColaborador = async function (req, res) {
+    console.log('DELETE');
+    const id = parseInt(req.params.id);
+    try {
+        const respuesta = await pool.query('DELETE from tablero_colaboradores WHERE id = $1', [id]);
+        console.log(respuesta.rows);
+        res.json({
+            message: 'Colaborador Eliminado',
             body: {
                 tablero: { id }
             }
