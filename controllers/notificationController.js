@@ -48,3 +48,22 @@ exports.updateNotifRead = async function (req, res) {
 
 };
 
+
+// create one-> POST
+exports.create = async function (req, res) {
+
+    const { id_usr_recieve, id_usr_send, type_notification, description, id_objeto } = req.body;
+
+    console.log('POST');
+
+    const response = await pool.query('INSERT INTO tablero ( id_usr_recieve, id_usr_send, type_notification, description, id_objeto)  VALUES ($1, $2, $3, $4, $5 ) RETURNING *  ', [id_usr_recieve, id_usr_send, type_notification, description, id_objeto]);
+    // console.log(response);
+    res.json({
+        message: 'Notificacion Agregada',
+        body: {
+            tablero: response.rows[0]
+        }
+    })
+
+
+};

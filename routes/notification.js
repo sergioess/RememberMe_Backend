@@ -11,5 +11,6 @@ notificacion.route('/notificacioncount/:id').get(notificationController.countUnr
 
 notificacion.route('/notificacion/:id').put(notificationController.updateNotifRead)
 
+notificacion.route('/notificacion').post(notificationController.create)
 
 module.exports = notificacion;
