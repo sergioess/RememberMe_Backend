@@ -66,3 +66,23 @@ exports.deleteTablero_colaboradores = async function (req, res) {
     }
 
 }
+
+
+
+//Actualiza el estado de la invitacion al tablero a true
+exports.updateAceptaEstadoColaborador = async function (req, res) {
+    const id = parseInt(req.params.id)
+    const { id_objeto, usr_r_id } = req.body;
+
+    const response = await pool.query('UPDATE tablero_colaboradores set acepto = true WHERE id_colaborador = $1 and id_tablero = $2 RETURNING * ', [usr_r_id, id_objeto]);
+    console.log(response);
+
+    res.json({
+        message: 'Colaborador Modificado',
+        body: {
+            tarea: response.rows[0]
+        }
+    })
+};
+
+

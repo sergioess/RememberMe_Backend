@@ -15,6 +15,9 @@ tablero_colaboradores.route('/tablero_colaboradores')
 tablero_colaboradores.route('/tablero_colaboradores/:id')
     .delete(tableroColController.deleteTablero_colaboradores)
 
+tablero_colaboradores.route('/tablero_colaboradores_acepta/:id')
+    .put(tableroColController.updateAceptaEstadoColaborador)
+
 
 module.exports = tablero_colaboradores;
 
