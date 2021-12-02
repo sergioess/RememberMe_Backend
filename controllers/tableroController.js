@@ -20,7 +20,10 @@ exports.readAllTablero = async function (req, res) {
 exports.readAllTableroUsr = async function (req, res) {
     const id = parseInt(req.params.id_usuario)
     try {
-        const respuesta = await pool.query('select t.*, u.username from tablero t left join usuarios u on (t.id_usuario = u.id) where t.id_usuario = = $1 order by created_at', [id]);
+        // const respuesta = await pool.query('select t.*, u.username from tablero t left join usuarios u on (t.id_usuario = u.id) where t.id_usuario = $1 order by created_at', [id]);
+        const respuesta = await pool.query('select t.*, u.username from tablero t left join usuarios u on (t.id_usuario = u.id) where t.id_usuario = $1 order by created_at union select t.* , u.username from tablero_colaboradores tc left join tablero t on (t.id = tc.id_tablero) left join usuarios u on (t.id_usuario = u.id) where tc.id_colaborador = $1 union  select t.*, u.username from tablero t left join usuarios u on (t.id_usuario = u.id) where t.id_usuario = $1 order by created_at', [id]);
+
+
         // console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
