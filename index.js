@@ -6,7 +6,7 @@ let cors = require('cors');
 app.use(cors({
     'allowedHeaders': ['sessionId', 'Content-Type'],
     'exposedHeaders': ['sessionId'],
-    'origin': 'http://localhost:4200',
+    'origin': '*',
     'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
     'preflightContinue': false,
     'optionsSuccessStatus': 200
