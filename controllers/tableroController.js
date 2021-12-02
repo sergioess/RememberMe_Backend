@@ -6,7 +6,7 @@ exports.readAllTablero = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
         const response = await pool.query('SELECT * from tablero where id = $1', [id]);
-        console.log(respuesta.rows);
+        console.log(response.rows);
         res.json({
             message: 'Tarea Agregada',
             body: {
