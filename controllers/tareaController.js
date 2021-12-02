@@ -35,7 +35,7 @@ exports.readById = async function (req, res) {
 // create one-> POST
 exports.create = async function (req, res) {
 
-    const { titulo, descripcion, id_usuario } = req.body;
+    const { titulo, descripcion, id_usuario, id_tablero } = req.body;
 
     // console.log('POST');
     // console.log(req.body.titulo);
@@ -43,7 +43,7 @@ exports.create = async function (req, res) {
     const date = new Date();
     // console.log(date);
 
-    const response = await pool.query('INSERT INTO tareas (titulo, descripcion, id_usuario, fechalimite) VALUES ($1, $2, $3, $4) RETURNING * ', [titulo, descripcion, id_usuario, date]);
+    const response = await pool.query('INSERT INTO tareas (titulo, descripcion, id_usuario, fechalimite, id_tablero) VALUES ($1, $2, $3, $4, $5) RETURNING * ', [titulo, descripcion, id_usuario, date, id_tablero]);
     // console.log(response);
 
     res.json({
