@@ -35,6 +35,33 @@ exports.readById = async function (req, res) {
 // create one-> POST
 exports.create = async function (req, res) {
 
+    const { titulo, descripcion, id_usuario } = req.body;
+
+    // console.log('POST');
+    // console.log(req.body.titulo);
+
+    const date = new Date();
+    // console.log(date);
+
+    const response = await pool.query('INSERT INTO tareas (titulo, descripcion, id_usuario, fechalimite) VALUES ($1, $2, $3, $4) RETURNING * ', [titulo, descripcion, id_usuario, date]);
+    // console.log(response);
+
+    res.json({
+        message: 'Tarea Agregada',
+        body: {
+            tarea: response.rows[0]
+        }
+    })
+
+    // console.log("ID ingresado" + res.rows[0].id);
+
+
+};
+
+
+// create one-> POST
+exports.createtablero = async function (req, res) {
+
     const { titulo, descripcion, id_usuario, id_tablero } = req.body;
 
     // console.log('POST');
@@ -57,6 +84,9 @@ exports.create = async function (req, res) {
 
 
 };
+
+
+
 // delete one-> DELETE
 exports.deleteTarea = async function (req, res) {
     console.log('DELETE');

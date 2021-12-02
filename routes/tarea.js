@@ -14,6 +14,9 @@ tareas.route('/tareas/:id')
 tareas.route('/tareas')
     .post(tareaController.create)
 
+tareas.route('/tareastablero')
+    .post(tareaController.createtablero)
+
 tareas.route('/tareas/:id')
     .delete(tareaController.deleteTarea)
 
