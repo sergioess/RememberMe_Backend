@@ -1,0 +1,107 @@
+{
+  "configVersion": 1,
+  "timestamp": 1638502784366,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main.6a5d048280a79879.js",
+        "/manifest.webmanifest",
+        "/polyfills.2cef3313a0906e67.js",
+        "/runtime.cf61465f27d05414.js",
+        "/scripts.ae2e3ba3d7d8b0c0.js",
+        "/styles.d1b8529d1cafd563.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/icono.fw.png",
+        "/assets/icono.png",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/img/ccinco.png",
+        "/assets/img/ccuatro.png",
+        "/assets/img/cdos.png",
+        "/assets/img/ctres.png",
+        "/assets/img/cuno.png",
+        "/assets/manifest.webmanifest",
+        "/fontawesome-webfont.8a7cb27d142e3e19.ttf",
+        "/fontawesome-webfont.cf011583fb81df9f.woff",
+        "/fontawesome-webfont.da909aa098b0ee2d.svg",
+        "/fontawesome-webfont.e9955780856cf8aa.woff2"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/icono.fw.png": "9ebdd4dedd5d7ac5ca2bc807930ae40eee7e3079",
+    "/assets/icono.png": "75606e63c592ec4a61c7ff10da3f25aed04c538f",
+    "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/assets/img/ccinco.png": "5cc478239235b58d0cf20564a83384d295d4659b",
+    "/assets/img/ccuatro.png": "6dab33de68363cf57c1af966efe8776460b659e0",
+    "/assets/img/cdos.png": "9c29a850cb76595a8c98f3223f16bf28feb0f87d",
+    "/assets/img/ctres.png": "4c02b4cbfe252299c86dfb624287628a5199edcc",
+    "/assets/img/cuno.png": "5a347e202f386baa5a79e99d6e593ea3d55faffa",
+    "/assets/manifest.webmanifest": "aa91ac2df80536fbf64dad81984495929432b0c1",
+    "/favicon.ico": "90ed57eb24d0a02ce3ed9cc732f21ecf8cf60f06",
+    "/fontawesome-webfont.8a7cb27d142e3e19.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
+    "/fontawesome-webfont.cf011583fb81df9f.woff": "28b782240b3e76db824e12c02754a9731a167527",
+    "/fontawesome-webfont.da909aa098b0ee2d.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
+    "/fontawesome-webfont.e9955780856cf8aa.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
+    "/index.html": "fd9672539911f0d709c26929b0d0f9d9896acad7",
+    "/main.6a5d048280a79879.js": "86b979a448ae884542f818633990df337b9da161",
+    "/manifest.webmanifest": "aa91ac2df80536fbf64dad81984495929432b0c1",
+    "/polyfills.2cef3313a0906e67.js": "ba7012837df2c67cac40aa46cd97358f5cbedd71",
+    "/runtime.cf61465f27d05414.js": "20c8c7651ff2d3877101cd708e6d56d4349cea2b",
+    "/scripts.ae2e3ba3d7d8b0c0.js": "6ce19643d2c864b0fc056627dc76ed5ca61ca388",
+    "/styles.d1b8529d1cafd563.css": "aa79ce73cc7869b05d730da05b6f76df302db148"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
