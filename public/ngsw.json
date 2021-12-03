@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1638505611147,
+  "timestamp": 1638506205800,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -30,6 +30,7 @@
         "ignoreVary": true
       },
       "urls": [
+        "/assets/icon-512x512.png",
         "/assets/icono.fw.png",
         "/assets/icono.png",
         "/assets/icons/icon-128x128.png",
@@ -56,6 +57,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
+    "/assets/icon-512x512.png": "0ad8bf7a3e38900ca8481b8403b24cb0eac48d92",
     "/assets/icono.fw.png": "9ebdd4dedd5d7ac5ca2bc807930ae40eee7e3079",
     "/assets/icono.png": "75606e63c592ec4a61c7ff10da3f25aed04c538f",
     "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
@@ -77,7 +79,7 @@
     "/fontawesome-webfont.cf011583fb81df9f.woff": "28b782240b3e76db824e12c02754a9731a167527",
     "/fontawesome-webfont.da909aa098b0ee2d.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
     "/fontawesome-webfont.e9955780856cf8aa.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
-    "/index.html": "13db789870b2c86595c64e48ef1a49c47911c504",
+    "/index.html": "5bc69aa179e787842e7694cdb28e9a3d3d7a63b5",
     "/main.7fbaa3a710dc5677.js": "81ca0a2ed5fa5e38205d665f2e617999f69f9127",
     "/manifest.webmanifest": "a695d1fab4b3b1f7fcc46187a4a80ffadad3f29a",
     "/polyfills.2cef3313a0906e67.js": "ba7012837df2c67cac40aa46cd97358f5cbedd71",
