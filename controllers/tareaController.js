@@ -135,7 +135,7 @@ exports.tareasUsuario = async function (req, res) {
     const id = parseInt(req.params.id)
     try {
         //const respuesta = await pool.query('SELECT * from tareas as t left join usuarios as u on (t.id_usuario = u.id) WHERE id_usuario = $1 order by fechalimite', [id]);
-        const respuesta = await pool.query('SELECT ta.*, t.titulo from tareas ta left join tablero t on (ta.id_tablero = t.id) WHERE ta.id_usuario = $1 and  ta.estado <> 3 order by ta.fechalimite ASC', [id]);
+        const respuesta = await pool.query('SELECT ta.*, t.titulo as tablero from tareas ta left join tablero t on (ta.id_tablero = t.id) WHERE ta.id_usuario = $1 and  ta.estado <> 3 order by ta.fechalimite ASC', [id]);
         // console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
@@ -150,7 +150,7 @@ exports.tareasClasificacion = async function (req, res) {
     const { id_usuario, id_clasificacion } = req.body;
 
     try {
-        const respuesta = await pool.query('SELECT ta.*, t.titulo from tareas ta left join tablero t on (ta.id_tablero = t.id) WHERE ta.id_clasificacion = $1 and ta.id_usuario = $2 and ta.estado <> 3 order by ta.fechalimite ASC', [id_clasificacion, id_usuario]);
+        const respuesta = await pool.query('SELECT ta.*, t.titulo as tablero from tareas ta left join tablero t on (ta.id_tablero = t.id) WHERE ta.id_clasificacion = $1 and ta.id_usuario = $2 and ta.estado <> 3 order by ta.fechalimite ASC', [id_clasificacion, id_usuario]);
         // console.log(respuesta.rows);
         res.status(200).json(respuesta.rows);
     }
