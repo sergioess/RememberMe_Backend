@@ -39,6 +39,8 @@ app.use('/api', notificationColRoute)
 //     console.log("Node server running on http://localhost:3000");
 // });
 
+app.get('*', (req, res) => { res.sendFile(path.resolve('./public/index.html')) });
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Node server running on http://localhost: ${PORT}`);
