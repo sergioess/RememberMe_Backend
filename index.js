@@ -35,6 +35,8 @@ let notificationColRoute = require('./routes/notification')
 app.use('/api', notificationColRoute)
 // RUTAS
 
+app.use(express.static('public'));
+
 // app.listen(3000, function () {
 //     console.log("Node server running on http://localhost:3000");
 // });
