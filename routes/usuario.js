@@ -5,26 +5,13 @@ let usuarioController = require('../controllers/usuarioController')
 
 let usuarios = express.Router();
 
-usuarios.route('/usuarios')
-    .get(usuarioController.readAll)
-
-usuarios.route('/usuarios/:id')
-    .get(usuarioController.readById)
-
-usuarios.route('/usuarios')
-    .post(usuarioController.create)
-
-usuarios.route('/usuarios/:id')
-    .delete(usuarioController.deleteUsuario)
-
-usuarios.route('/usuarios/:id')
-    .put(usuarioController.updateUsuario)
-
-usuarios.route('/usuariosemail/')
-    .post(usuarioController.readByEmail)
-
-usuarios.route('/usuariosemail/:email')
-    .get(usuarioController.readByEmailUser)
+usuarios.route('/usuarios').get(usuarioController.readAll)
+usuarios.route('/usuarios/:id').get(usuarioController.readById)
+usuarios.route('/usuarios').post(usuarioController.create)
+usuarios.route('/usuarios/:id').delete(usuarioController.deleteUsuario)
+usuarios.route('/usuarios/:id').put(usuarioController.updateUsuario)
+usuarios.route('/usuariosemail/').post(usuarioController.readByEmail)
+usuarios.route('/usuariosemail/:email').get(usuarioController.readByEmailUser)
 
 
 /* usuarios.route('/tareasusuario/:id')
